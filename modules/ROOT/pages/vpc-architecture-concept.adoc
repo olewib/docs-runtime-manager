@@ -7,13 +7,19 @@ An Anypoint VPC is a logically private and isolated network hosted inside CloudH
 
 The Anypoint VPC configuration exposes the DNS record `mule-worker-internal-<app-name>.cloudhub.io`. This is a DNS A record, which includes the IP addresses of all your workers. This DNS record cannot be accessed from outside your Anypoint VPC.
 
+> You might have to add .<region-code> before cloudhub.io, for example ".de-c1.cloudhub.io" for EU Frankfurt region.
+
 Each Anypoint VPC allows you to configure firewall rules to check inbound connections directly to your workers. 
 
 Four firewall rules are created by default--two rules that allow your private address space to connect through ports 8091 and 8092, and two rules that whitelist external requests proxied by CloudHub's shared load balancer through ports 8081 and 8082. 
 
 All traffic that is not whitelisted in a firewall rule is blocked by default.
 
+> Remember to listen to the 8091/8092 ports explicity in your app if you want to utilize these ports.
+
 The graphic below shows a default Anypoint VPC architecture:
+
+> The graphic doesn't show the ports 8091 / 8092 used internally in shared loadbalancer.
 
 image::vpc-architecture-concept-31808.png[]
 
